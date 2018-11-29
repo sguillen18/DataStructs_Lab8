@@ -40,10 +40,39 @@ public class BinaryNode <T>
 	public boolean hasLeftChild () {
 	   return (leftChild != null);
 	}
+	
+	public void setRightChild (BinaryNode<T> newRightChild) {
+	    leftChild = newRightChild;
+	}
+		   
+	public boolean hasRightChild () {
+	   return (rightChild != null);
+	}
 		
-
-   
 	public boolean isLeaf () {
 	   return (leftChild == null && (rightChild == null));
 	}
+	
+	public int getHeight() {
+	     int leftHeight = hasLeftChild() ? leftChild.getHeight() : 0;
+	     int rightHeight = hasRightChild() ? rightChild.getHeight() : 0;
+		return 1 + Math.max (leftHeight, rightHeight);
+	}
+
+	public int getNumberOfNodes () {
+		int leftNodes = hasLeftChild() ? leftChild.getNumberOfNodes() : 0;
+	    int rightNodes = hasRightChild() ? rightChild.getNumberOfNodes() : 0;
+		return 1 + leftNodes + rightNodes;
+	}
+
+	public BinaryNode <T> copy() {
+		   BinaryNode <T> copied = new BinaryNode(data);
+		   if(hasLeftChild())
+			   copied.setLeftChild(leftChild.copy());
+		   if(hasRightChild())
+			   copied.setRightChild(rightChild.copy());
+		   return copied;
+		}
+
 }
+
