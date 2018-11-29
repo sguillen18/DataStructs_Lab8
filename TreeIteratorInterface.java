@@ -1,5 +1,4 @@
-package tree;
-import java.util.Iterator;
+package Lab8;
 
 public interface TreeIteratorInterface <T> {
 	

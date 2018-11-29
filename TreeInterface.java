@@ -1,4 +1,4 @@
-package tree;
+package Lab8;
 
 public interface TreeInterface <T> {
 

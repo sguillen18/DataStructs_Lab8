@@ -1,4 +1,4 @@
-package tree;
+package Lab8;
 
 public class Testing {
 

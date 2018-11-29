@@ -1,6 +1,5 @@
-package tree;
+package Lab8;
 
-//WHERE I HAVE "EXTENDS" YURI WROTE "IMPLEMENTS" , CAUSES ERROR
 public interface BinaryTreeInterface <T> extends TreeInterface <T>, TreeIteratorInterface <T> {
 
 	public void setTree(T rootData);
