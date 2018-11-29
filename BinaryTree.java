@@ -7,16 +7,20 @@ public class BinaryTree <T> {
 
 	private BinaryNode<T> root;
 	
-	public Iterator<T> getPreorderIterator(){
-		
+	public Iterator<T> getPreorderIterator(){		
 		//create inner class
 		return new PreorderIterator<>;
 	}
 	
-	private class BinaryNode <T> {
-		
-		
+	public BinaryTree() {
+		root = null;
 	}
+	
+	
+	
+	
+	
+	
 	
 	private class PreorderIterator implements Iterator<T>{		
 		private BinaryNode<T> currNode;
@@ -25,14 +29,10 @@ public class BinaryTree <T> {
 		private BinaryNode<T> rightChild;
 		
 		public PreorderIterator() {
-			//currNode = root;
-			nodeStack = new Stack();
-			
+			nodeStack = new Stack();			
 			addToStack(root);
 			
-		}
-		
-		
+		}		
 		
 		private void addToStack(BinaryNode<T> addedNode) {
 			if (addedNode.hasRightChild()) {
@@ -62,35 +62,7 @@ public class BinaryTree <T> {
 			}
 			return n;
 		}
-		
-		
-		/*public int getNumberOfNodes() {
-			int n=1;
-			if (rightChild != null) {
-				n += rightChild.getNumberOfNodes();
-			}
-		}*/
-		
-		/*
-		public T next() {
-			T outData = currNode.getData();
-			if (currNode.hasRightChild()) {
-				nodeStack.push(currNode.getRightChild());
-				//DOES THIS IF STATEMENT STAY NESTED?
-				//OR IS IT OUTSIDE OF THE ABOVE FOR LOOP?
-				if (currNode.hasLeftChild()) {
-					currNode = currNode.getLeftChild();
-				}
-				else if(!nodeStack.isEmpty()) {
-					currNode = nodeStack.pop();
-				}
-				else {
-					currNode = null;
-				}
-			}
-			return outData;
-		}
-		*/
+
 	}
 	
 }
