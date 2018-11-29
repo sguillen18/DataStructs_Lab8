@@ -32,7 +32,10 @@ public class BinaryNode <T>
 	public BinaryNode<T> getLeftChild () {
 	    return leftChild;
 	}
-		   
+	
+	public BinaryNode<T> getRightChild () {
+	    return rightChild;
+	}	   
 	public void setLeftChild (BinaryNode<T> newLeftChild) {
 	    leftChild = newLeftChild;
 	}

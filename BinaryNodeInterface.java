@@ -26,3 +26,4 @@ public interface BinaryNodeInterface <T> {
 	   public BinaryNodeInterface <T> copy();
 	   
 	}
+
