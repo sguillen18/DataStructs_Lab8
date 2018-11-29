@@ -1,6 +1,6 @@
 package Lab8;
 
-interface BinaryNodeInterface <T> {
+public interface BinaryNodeInterface <T> {
 	   public T getData();
 	    
 	   public void setData (T newData);
@@ -26,4 +26,3 @@ interface BinaryNodeInterface <T> {
 	   public BinaryNodeInterface <T> copy();
 	   
 	}
-

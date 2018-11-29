@@ -1,6 +1,6 @@
 package Lab8;
 
-class BinaryNode <T>
+public class BinaryNode <T>
 {
      private T data;
      private BinaryNode<T> leftChild;
@@ -47,4 +47,3 @@ class BinaryNode <T>
 	   return (leftChild == null && (rightChild == null));
 	}
 }
-
