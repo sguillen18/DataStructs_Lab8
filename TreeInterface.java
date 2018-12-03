@@ -2,7 +2,7 @@ package Lab8;
 
 public interface TreeInterface <T> {
 
-	public T getRoodDate();
+	public T getRootData();
 	
 	public int getHeight();
 	
