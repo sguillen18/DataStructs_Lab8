@@ -176,6 +176,13 @@ public class BinaryTree <T> {
 	public Iterator<T> getPreorderIterator(){
 		return new PreorderIterator();
 	}
+	
+	public void printPreorder() {
+		Iterator<T> p = getPreorderIterator();
+		while(p.hasNext()) {
+			System.out.println(p.next());
+		}
+	}
 
 	private class PreorderIterator implements Iterator<T>{		
 		private BinaryNode<T> currNode;
@@ -209,6 +216,16 @@ public class BinaryTree <T> {
 		}
 	}
 
+	public Iterator<T> getInorderIterator(){
+		return new InorderIterator();
+	}
+	
+	public void printInorder() {
+		Iterator<T> p = getInorderIterator();
+		while(p.hasNext()) {
+			System.out.println(p.next());
+		}
+	}
 
 	private class InorderIterator implements Iterator <T> {
 		private Stack <BinaryNode<T>> nodeStack;
@@ -243,6 +260,17 @@ public class BinaryTree <T> {
 		}
 
 	}
+	
+	public Iterator<T> getPostorderIterator(){
+		return new PostorderIterator();
+	}
+	
+	public void printPostorder() {
+		Iterator<T> p = getPostorderIterator();
+		while(p.hasNext()) {
+			System.out.println(p.next());
+		}
+	}
 
 	private class PostorderIterator implements Iterator <T> {
 		private Stack <BinaryNode<T>> nodeStack;
@@ -274,6 +302,17 @@ public class BinaryTree <T> {
 			throw new UnsupportedOperationException();
 		}
 
+	}
+	
+	public Iterator<T> getLevelorderIterator(){
+		return new LevelorderIterator();
+	}
+	
+	public void printLevelorder() {
+		Iterator<T> p = getLevelorderIterator();
+		while(p.hasNext()) {
+			System.out.println(p.next());
+		}
 	}
 
 	private class LevelorderIterator implements Iterator <T> {

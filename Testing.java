@@ -19,8 +19,6 @@ public class Testing {
 		//root
 		BinaryTree <Character> a = new BinaryTree <Character>('A', b, c);
 		
-		BinaryTree <Character> aTree = new BinaryTree <Character>();
-		
 		
 		
 
