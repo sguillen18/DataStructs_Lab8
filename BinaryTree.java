@@ -1,6 +1,7 @@
 package Lab8;
 
 import java.util.Iterator;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTree <T> {
@@ -33,13 +34,14 @@ public class BinaryTree <T> {
 		                         (BinaryTree <T>) rightTree);
 	 }
 	 
+	@SuppressWarnings("unchecked")
 	private void initializeTree (T rootData, 
             BinaryTree <T> leftTree, BinaryTree <T> rightTree) {
 	   root = new BinaryNode <> (rootData);
         if (root.leftChild != null)	
-           root.setLeftChild (leftTree);
+           root.setLeftChild ((BinaryNodeInterface <T>) leftTree);
         if (root.rightChild != null)	
-           root.setRightChild (rightTree);	   
+           root.setRightChild ((BinaryNodeInterface <T>) rightTree);	   
 	 }
 
 	
@@ -218,6 +220,70 @@ public class BinaryTree <T> {
 			addToStack (right);
 			nodeStack.push(aNode);
 			addToStack (left);
+		}
+
+		public boolean hasNext() {
+			return (!nodeStack.isEmpty());
+		}
+
+		public T next() {
+			return nodeStack.pop().getData();
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+	}
+	
+	private class PostorderIterator implements Iterator <T> {
+		private Stack <BinaryNode<T>> nodeStack;
+
+		public PostorderIterator() {
+			nodeStack = new Stack <> ();
+			addToStack (root);
+		}
+
+		private void addToStack(BinaryNode<T> addedNode) {
+			nodeStack.push(addedNode);
+			if (addedNode.hasRightChild()) {
+				addToStack( (BinaryNode <T>) addedNode.getRightChild());
+			}
+			if (addedNode.hasLeftChild()) {
+				addToStack((BinaryNode <T>) addedNode.getLeftChild());
+			}
+		}
+
+		public boolean hasNext() {
+			return (!nodeStack.isEmpty());
+		}
+
+		public T next() {
+			return nodeStack.pop().getData();
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+
+	}
+	
+	private class LevelorderIterator implements Iterator <T> {
+		private Queue <BinaryNode<T>> nodeQueue;
+
+		public LevelorderIterator() {
+			nodeQueue = new  Queue<>();
+			addToStack (root);
+		}
+
+		private void addToStack(BinaryNode<T> addedNode) {
+			nodeStack.push(addedNode);
+			if (addedNode.hasRightChild()) {
+				addToStack( (BinaryNode <T>) addedNode.getRightChild());
+			}
+			if (addedNode.hasLeftChild()) {
+				addToStack((BinaryNode <T>) addedNode.getLeftChild());
+			}
 		}
 
 		public boolean hasNext() {
