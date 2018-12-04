@@ -9,10 +9,10 @@ public class BinaryTree <T> {
 
 	private BinaryNode<T> root;
 	public BinaryTree () {
-		root = null;
+		initializeTree (null, null, null);
 	}
 	public BinaryTree (T rootData) {
-		root = new BinaryNode <> (rootData);
+		initializeTree (rootData, null, null);
 	}
 	public BinaryTree (T rootData, BinaryTree <T> leftTree,
 			BinaryTree <T> rightTree) {
@@ -39,10 +39,10 @@ public class BinaryTree <T> {
 	private void initializeTree (T rootData, 
 			BinaryTree <T> leftTree, BinaryTree <T> rightTree) {
 		root = new BinaryNode <> (rootData);
-		if (root.leftChild != null)	
-			root.setLeftChild ((BinaryNodeInterface <T>) leftTree);
-		if (root.rightChild != null)	
-			root.setRightChild ((BinaryNodeInterface <T>) rightTree);	   
+		if (leftTree != null)	
+			root.setLeftChild (leftTree.getRootData());
+		if (rightTree != null)	
+			root.setRightChild (rightTree.getRootData());	   
 	}
 
 
@@ -57,6 +57,10 @@ public class BinaryTree <T> {
 	public void setLeftTree(T left) {
 		BinaryNode <T> leftTree = new BinaryNode <T>(left);
 		root.setLeftChild(leftTree);
+	}
+	
+	public BinaryNodeInterface <T> getLeftTree() {
+		return root.getLeftChild();
 	}
 
 	public void setRightTree(T right) {
@@ -124,16 +128,22 @@ public class BinaryTree <T> {
 		public BinaryNodeInterface<T> getRightChild () {
 			return rightChild;
 		}	   
+		public void setLeftChild (BinaryNode<T> newLeftChild) {
+			leftChild = newLeftChild;
+		}
 		public void setLeftChild (BinaryNodeInterface<T> newLeftChild) {
-			leftChild = (BinaryNode <T>) newLeftChild;
+			leftChild = (BinaryNode<T>) newLeftChild;
 		}
 
 		public boolean hasLeftChild () {
 			return (leftChild != null);
 		}
 
+		public void setRightChild (BinaryNode<T> newRightChild) {
+			rightChild = newRightChild;
+		}
 		public void setRightChild (BinaryNodeInterface<T> newRightChild) {
-			rightChild = (BinaryNode <T>) newRightChild;
+			rightChild = (BinaryNode<T>) newRightChild;
 		}
 
 		public boolean hasRightChild () {

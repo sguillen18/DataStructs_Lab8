@@ -19,7 +19,9 @@ public class Testing {
 		//root
 		BinaryTree <Character> a = new BinaryTree <Character>('A', b, c);
 		
+		System.out.println("The height of this tree is: " + a.getHeight());
 		
+		System.out.println(g.getRootData().hasLeftChild());
 		
 
 	}
