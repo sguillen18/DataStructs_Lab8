@@ -1,6 +1,7 @@
 package Lab8;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -58,6 +59,11 @@ public class BinaryTree <T> {
 		root.setLeftChild(leftTree);
 	}
 	
+	public void setLeftTree(BinaryTree <T> left) {
+		BinaryNode <T> leftTree = new BinaryNode <T>(left);
+		root.setLeftChild(leftTree);
+	}
+	
 	public void setRightTree(T right) {
 		BinaryNode <T> rightTree = new BinaryNode <T>(right);
 		root.setLeftChild(rightTree);
@@ -76,7 +82,7 @@ public class BinaryTree <T> {
 			System.out.println(root);
 		}
 		else {
-			root.getLeftChild();
+			BinaryTree<T> currLeft =(BinaryTree<T>) root.getLeftChild();
 		}
 	}
 
@@ -272,26 +278,29 @@ public class BinaryTree <T> {
 		private Queue <BinaryNode<T>> nodeQueue;
 
 		public LevelorderIterator() {
-			nodeQueue = new  Queue<>();
-			addToStack (root);
+			nodeQueue = new  LinkedList <>();
+			int h = root.getHeight();
+			for(int i = 1; i <= h; i++)
+				addToQueue (root, i);
 		}
 
-		private void addToStack(BinaryNode<T> addedNode) {
-			nodeStack.push(addedNode);
-			if (addedNode.hasRightChild()) {
-				addToStack( (BinaryNode <T>) addedNode.getRightChild());
-			}
-			if (addedNode.hasLeftChild()) {
-				addToStack((BinaryNode <T>) addedNode.getLeftChild());
+		private void addToQueue(BinaryNode<T> addedNode, int level) {
+			if(addedNode == null)
+				return;
+			if(level == 1)
+				nodeQueue.add(addedNode);
+			else if(level > 1) {
+				addToQueue(addedNode.leftChild, level-1);
+				addToQueue(addedNode.rightChild, level-1);
 			}
 		}
 
 		public boolean hasNext() {
-			return (!nodeStack.isEmpty());
+			return (!nodeQueue.isEmpty());
 		}
 
 		public T next() {
-			return nodeStack.pop().getData();
+			return nodeQueue.remove().getData();
 		}
 
 		public void remove() {
