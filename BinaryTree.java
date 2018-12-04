@@ -77,19 +77,7 @@ public class BinaryTree <T> {
 	}
 
 	public void getLeaves() {
-		if(root.isLeaf()) {
-			System.out.println(root);
-		}
-		else {
-			if(root.hasLeftChild()) {
-				BinaryTree<T> currLeft =(BinaryTree<T>) root.getLeftChild();
-				currLeft.getLeaves();
-			}
-			if(root.hasRightChild()) {
-				BinaryTree<T> currRight =(BinaryTree<T>) root.getRightChild();
-				currRight.getLeaves();
-			}
-		}
+		root.getLeaves();
 	}
 
 
@@ -170,6 +158,22 @@ public class BinaryTree <T> {
 			}
 			return n;
 		}
+		
+		public void getLeaves() {
+			if(root.isLeaf()) {
+				System.out.print(getData() + " ");
+			}
+			else {
+				if(root.hasLeftChild()) {
+					BinaryNode<T> currLeft = leftChild;
+					currLeft.getLeaves();
+				}
+				if(root.hasRightChild()) {
+					BinaryNode<T> currRight = rightChild;
+					currRight.getLeaves();
+				}
+			}
+		}
 
 		public BinaryNodeInterface <T> copy() {
 			BinaryNode <T> copied = new BinaryNode <T>(data);
@@ -190,7 +194,7 @@ public class BinaryTree <T> {
 	public void printPreorder() {
 		Iterator<T> p = getPreorderIterator();
 		while(p.hasNext()) {
-			System.out.println(p.next());
+			System.out.print(p.next()+ " ");
 		}
 	}
 
@@ -233,7 +237,7 @@ public class BinaryTree <T> {
 	public void printInorder() {
 		Iterator<T> p = getInorderIterator();
 		while(p.hasNext()) {
-			System.out.println(p.next());
+			System.out.print(p.next()+ " ");
 		}
 	}
 
@@ -278,7 +282,7 @@ public class BinaryTree <T> {
 	public void printPostorder() {
 		Iterator<T> p = getPostorderIterator();
 		while(p.hasNext()) {
-			System.out.println(p.next());
+			System.out.print(p.next()+ " ");
 		}
 	}
 
@@ -321,7 +325,7 @@ public class BinaryTree <T> {
 	public void printLevelorder() {
 		Iterator<T> p = getLevelorderIterator();
 		while(p.hasNext()) {
-			System.out.println(p.next());
+			System.out.print(p.next() + " ");
 		}
 	}
 

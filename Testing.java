@@ -21,7 +21,27 @@ public class Testing {
 		
 		System.out.println("The height of this tree is: " + a.getHeight());
 		
-		System.out.println(g.getRootData().hasLeftChild());
+		System.out.println("The number of nodes in this tree is: " + a.getNumberOfNodes());
+		
+		System.out.println("These are the leaves of the tree: ");
+		a.getLeaves();
+		System.out.println("\n");
+		
+		System.out.println("Inorder: ");
+		a.printInorder();
+		System.out.println("\n");
+		
+		System.out.println("Levelorder: ");
+		a.printLevelorder();
+		System.out.println("\n");
+		
+		System.out.println("Postorder: ");
+		a.printPostorder();
+		System.out.println("\n");
+		
+		System.out.println("Preorder: ");
+		a.printPreorder();
+		System.out.println("\n");
 		
 
 	}
