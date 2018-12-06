@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTree <T> {
+public class BinaryTree <T> implements BinaryTreeInterface <T> {
 
 	private BinaryNode<T> root;
 	public BinaryTree () {
@@ -26,8 +26,11 @@ public class BinaryTree <T> {
 	public void setTree (T rootData) {
 		root = new BinaryNode <> (rootData);
 	}
+	
+	public void clear() {
+		
+	}
 
-	@SuppressWarnings("unchecked")
 	public void setTree (T rootData, 
 			BinaryTreeInterface <T> leftTree,
 			BinaryTreeInterface <T> rightTree) {
@@ -35,14 +38,13 @@ public class BinaryTree <T> {
 				(BinaryTree <T>) rightTree);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initializeTree (T rootData, 
 			BinaryTree <T> leftTree, BinaryTree <T> rightTree) {
 		root = new BinaryNode <> (rootData);
 		if (leftTree != null)	
-			root.setLeftChild (leftTree.getRootData());
+			root.setLeftChild (leftTree.root);
 		if (rightTree != null)	
-			root.setRightChild (rightTree.getRootData());	   
+			root.setRightChild (rightTree.root);	   
 	}
 
 
@@ -50,8 +52,8 @@ public class BinaryTree <T> {
 		root = new BinaryNode <T>(rootData);
 	}
 
-	public BinaryNode <T> getRootData(){
-		return root;
+	public T getRootData(){
+		return root.getData();
 	}
 
 	public void setLeftTree(T left) {
@@ -141,6 +143,18 @@ public class BinaryTree <T> {
 		public boolean isLeaf () {
 			return (leftChild == null && (rightChild == null));
 		}
+		
+		public void clear() {
+			data = null;
+			if(hasLeftChild()) {
+				leftChild.clear();
+				setLeftChild(null);
+			}
+			if(hasRightChild()) {
+				rightChild.clear();
+				setRightChild(null);
+			}
+		}
 
 		public int getHeight() {
 			int leftHeight = hasLeftChild() ? leftChild.getHeight() : 0;
@@ -187,26 +201,22 @@ public class BinaryTree <T> {
 
 	}
 
-	public Iterator<T> getPreorderIterator(){
+	public Iterator<T> getPreOrderIterator(){
 		return new PreorderIterator();
 	}
 	
 	public void printPreorder() {
-		Iterator<T> p = getPreorderIterator();
+		Iterator<T> p = getPreOrderIterator();
 		while(p.hasNext()) {
 			System.out.print(p.next()+ " ");
 		}
 	}
 
-	private class PreorderIterator implements Iterator<T>{		
-		private BinaryNode<T> currNode;
+	private class PreorderIterator implements Iterator<T>{	
 		private Stack <BinaryNode<T>> nodeStack;
-		private BinaryNode<T> leftChild;
-		private BinaryNode<T> rightChild;
 
 		public PreorderIterator() {
-			currNode = root;
-			nodeStack = new Stack();
+			nodeStack = new Stack<>();
 
 			addToStack(root);
 
@@ -230,12 +240,12 @@ public class BinaryTree <T> {
 		}
 	}
 
-	public Iterator<T> getInorderIterator(){
+	public Iterator<T> getInOrderIterator(){
 		return new InorderIterator();
 	}
 	
 	public void printInorder() {
-		Iterator<T> p = getInorderIterator();
+		Iterator<T> p = getInOrderIterator();
 		while(p.hasNext()) {
 			System.out.print(p.next()+ " ");
 		}
@@ -275,12 +285,12 @@ public class BinaryTree <T> {
 
 	}
 	
-	public Iterator<T> getPostorderIterator(){
+	public Iterator<T> getPostOrderIterator(){
 		return new PostorderIterator();
 	}
 	
 	public void printPostorder() {
-		Iterator<T> p = getPostorderIterator();
+		Iterator<T> p = getPostOrderIterator();
 		while(p.hasNext()) {
 			System.out.print(p.next()+ " ");
 		}
@@ -318,12 +328,12 @@ public class BinaryTree <T> {
 
 	}
 	
-	public Iterator<T> getLevelorderIterator(){
+	public Iterator<T> getLevelOrderIterator(){
 		return new LevelorderIterator();
 	}
 	
 	public void printLevelorder() {
-		Iterator<T> p = getLevelorderIterator();
+		Iterator<T> p = getLevelOrderIterator();
 		while(p.hasNext()) {
 			System.out.print(p.next() + " ");
 		}
